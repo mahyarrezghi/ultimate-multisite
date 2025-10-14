@@ -36,6 +36,16 @@
 // Exit if accessed directly
 defined('ABSPATH') || exit;
 
+# Load text domain to load translations
+function wu_load_textdomain() {
+    load_plugin_textdomain(
+        'ultimate-multisite',
+        false,
+        dirname(plugin_basename(__FILE__)) . '/lang'
+    );
+}
+add_action('plugins_loaded', 'wu_load_textdomain');
+
 if (defined('WP_SANDBOX_SCRAPING') && WP_SANDBOX_SCRAPING) {
 	require_once ABSPATH . 'wp-admin/includes/plugin.php';
 	$wu_possible_conflicts = false;
